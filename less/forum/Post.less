@@ -57,6 +57,12 @@
     & .fa-circle {
       color: @online-user-circle-color;
     }
+    
+    @media @phone {
+      & ~ .PostUser-badges {
+        left: 18px;
+      }
+    }
   }
 
   .UserCard {
