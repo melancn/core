@@ -27,7 +27,8 @@ class SearchServiceProvider extends AbstractServiceProvider
     {
         $this->app->bind(
             'Flarum\Core\Search\Discussion\Fulltext\DriverInterface',
-            'Flarum\Core\Search\Discussion\Fulltext\MySqlFulltextDriver'
+//            'Flarum\Core\Search\Discussion\Fulltext\MySqlFulltextDriver'
+            'Flarum\Core\Search\Discussion\Fulltext\MySqlFulltextLikeModeDriver'
         );
 
         $this->registerDiscussionGambits();
