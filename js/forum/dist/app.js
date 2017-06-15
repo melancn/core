@@ -24764,7 +24764,7 @@ System.register('flarum/components/NotificationList', ['flarum/Component', 'flar
                 app.cache.notifications.forEach(function (notification) {
                   var subject = notification.subject();
 
-                  if (typeof subject === 'undefined') return;
+                  if (typeof subject === 'undefined' || !subject) return;
 
                   // Get the discussion that this notification is related to. If it's not
                   // directly related to a discussion, it may be related to a post or
