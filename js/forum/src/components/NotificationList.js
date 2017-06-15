@@ -29,7 +29,7 @@ export default class NotificationList extends Component {
       app.cache.notifications.forEach(notification => {
         const subject = notification.subject();
 
-        if (typeof subject === 'undefined') return;
+        if (typeof subject === 'undefined' || !subject ) return;
 
         // Get the discussion that this notification is related to. If it's not
         // directly related to a discussion, it may be related to a post or
