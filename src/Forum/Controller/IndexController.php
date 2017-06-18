@@ -13,6 +13,8 @@ namespace Flarum\Forum\Controller;
 
 use Flarum\Api\Client as ApiClient;
 use Flarum\Core\User;
+use Flarum\Core\Discussion;
+use Flarum\Http\Exception\RouteNotFoundException;
 use Flarum\Forum\WebApp;
 use Illuminate\Contracts\Events\Dispatcher;
 use Psr\Http\Message\ServerRequestInterface as Request;
@@ -58,6 +60,9 @@ class IndexController extends WebAppController
         $sort = array_pull($queryParams, 'sort');
         $q = array_pull($queryParams, 'q');
         $page = array_pull($queryParams, 'page', 1);
+        $discussion = new Discussion();
+        $totledis = $discussion->count();
+        if(ceil($totledis / 20) < $page )throw new RouteNotFoundException;
 
         $params = [
             'sort' => $sort && isset($this->sortMap[$sort]) ? $this->sortMap[$sort] : '',
