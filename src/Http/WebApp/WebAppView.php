@@ -290,6 +290,7 @@ class WebAppView
         $view = $this->view->file(__DIR__.'/../../../views/app.blade.php');
 
         $view->title = $this->buildTitle(array_get($forum, 'data.attributes.title'));
+        $view->keywords = $this->keywords ?: array_get($forum, 'data.attributes.keywords');
         $view->description = $this->description ?: array_get($forum, 'data.attributes.description');
         $view->language = $this->language ?: $this->locales->getLocale();
         $view->direction = $this->direction ?: 'ltr';

@@ -3,6 +3,7 @@
   <head>
     <meta charset="utf-8">
     <title>{{ $title }}</title>
+    <meta name="keywords" content="{{ $keywords }}">
     <meta name="description" content="{{ $description }}">
     <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, minimum-scale=1">
     <meta name="theme-color" content="{{ array_get($forum, 'attributes.themePrimaryColor') }}">

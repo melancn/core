@@ -18057,7 +18057,7 @@ System.register('flarum/components/BasicsPage', ['flarum/components/Page', 'flar
 
             this.loading = false;
 
-            this.fields = ['forum_title', 'forum_description', 'default_locale', 'show_language_selector', 'default_route', 'welcome_title', 'welcome_message'];
+            this.fields = ['forum_title', 'forum_keywords', 'forum_description', 'default_locale', 'show_language_selector', 'default_route', 'welcome_title', 'welcome_message'];
             this.values = {};
 
             var settings = app.data.settings;
@@ -18090,6 +18090,14 @@ System.register('flarum/components/BasicsPage', ['flarum/components/Page', 'flar
                   FieldSet.component({
                     label: app.translator.trans('core.admin.basics.forum_title_heading'),
                     children: [m('input', { className: 'FormControl', value: this.values.forum_title(), oninput: m.withAttr('value', this.values.forum_title) })]
+                  }),
+                  FieldSet.component({
+                    label: app.translator.trans('core.admin.basics.forum_keywords_heading'),
+                    children: [m(
+                      'div',
+                      { className: 'helpText' },
+                      app.translator.trans('core.admin.basics.forum_keywords_text')
+                    ), m('textarea', { className: 'FormControl', value: this.values.forum_keywords(), oninput: m.withAttr('value', this.values.forum_keywords) })]
                   }),
                   FieldSet.component({
                     label: app.translator.trans('core.admin.basics.forum_description_heading'),

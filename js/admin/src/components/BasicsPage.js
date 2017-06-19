@@ -15,6 +15,7 @@ export default class BasicsPage extends Page {
 
     this.fields = [
       'forum_title',
+      'forum_keywords',
       'forum_description',
       'default_locale',
       'show_language_selector',
@@ -45,6 +46,16 @@ export default class BasicsPage extends Page {
               label: app.translator.trans('core.admin.basics.forum_title_heading'),
               children: [
                 <input className="FormControl" value={this.values.forum_title()} oninput={m.withAttr('value', this.values.forum_title)}/>
+              ]
+            })}
+
+            {FieldSet.component({
+              label: app.translator.trans('core.admin.basics.forum_keywords_heading'),
+              children: [
+                <div className="helpText">
+                  {app.translator.trans('core.admin.basics.forum_keywords_text')}
+                </div>,
+                <textarea className="FormControl" value={this.values.forum_keywords()} oninput={m.withAttr('value', this.values.forum_keywords)}/>
               ]
             })}
 
