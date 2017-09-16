@@ -77,6 +77,14 @@ export default class TextEditor extends Component {
       })
     );
 
+    items.add('image',
+      Button.component({
+        icon: 'image',
+        className: 'Button Button--icon',
+        onclick: this.insertIMG.bind(this)
+      })
+    );
+
     if (this.props.preview) {
       items.add('preview',
         Button.component({
@@ -160,5 +168,32 @@ export default class TextEditor extends Component {
    */
   onsubmit() {
     this.props.onsubmit(this.value());
+  }
+
+  insertIMG() {
+    var d = document.createElement('input');
+    d.type='file';
+    d.id='cnuerimgfile';
+    d.style.display='none';
+    d.onchange = () => {
+        var data = new FormData();
+        data.append("smfile", d.files[0]);
+        var xhr = new XMLHttpRequest();
+        xhr.onreadystatechange = () => {
+            if (xhr.readyState === 4 && xhr.status === 200) {
+              var re = JSON.parse(xhr.responseText);
+              if (re.code == 'success') {
+                this.insertAtCursor('![首都师范大学曾见星辰论坛](' + re.data.url + ')');
+              } else {
+                alert('图片上传失败！');
+              }
+            }
+          };
+        xhr.open("POST", "https://sm.ms/api/upload");
+        xhr.send(data);
+        $('#cnuerimgfile').remove();
+    }
+    document.body.appendChild(d)
+    $('#cnuerimgfile').trigger('click');
   }
 }
